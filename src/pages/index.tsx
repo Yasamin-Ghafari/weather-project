@@ -1,5 +1,6 @@
 import Image from "next/image";
 import localFont from "next/font/local";
+import Weather from "@/components/Weather";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -15,8 +16,8 @@ const geistMono = localFont({
 export default function Home() {
   return (
 
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-
+      <main>
+          <Weather/>
       </main>
 
   )
