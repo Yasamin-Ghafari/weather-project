@@ -17,7 +17,7 @@ export default function Home() {
   return (
 
       <main>
-          <Weather/>
+          <Weather city={"Tehran"}/>
       </main>
 
   )
