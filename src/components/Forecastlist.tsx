@@ -6,7 +6,7 @@ import {Daily, ForecastResponse} from "@/types/api/ForecastResponse";
 
 interface Props {
     // me
-    forecast : ForecastResponse | null,
+    forecast : ForecastResponse,
 
 }
 
@@ -15,17 +15,10 @@ function Forecastlist({forecast}:Props) {
 
     return (
         <div className={"grid grid-cols-8"}>
-            {/*{*/}
-            {/*    forecast.daily.map((item :Daily) => {*/}
-            {/*        return <Forecastitem item = {item}/>*/}
-            {/*    })*/}
-            {/*}*/}
-
-            {/*me*/}
             {
-                forecast?.daily?.map((item: Daily) => (
-                    <Forecastitem item={item} />
-                )) || <p>No forecast data available</p>
+                forecast.daily.map((item :Daily) => {
+                    return <Forecastitem item = {item}/>
+                })
             }
 
         </div>

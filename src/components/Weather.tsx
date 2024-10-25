@@ -5,6 +5,7 @@ import {useState} from "react";
 import {CallForcastApi, CallWeatherApi} from "@/Api/api";
 import {bgWhite} from "next/dist/lib/picocolors";
 import {ForecastResponse} from "@/types/api/ForecastResponse";
+import Image from "next/image";
 
 interface Props {
     city: string;
@@ -42,11 +43,15 @@ function Weather({city}:Props) {
     }
 
     return (
-        <div className={"bg-white shadow mt-4 rounded-2xl p-8 py-16"}>
-            <Searchinfo city={city} getWeatherData={getWeatherData}/>
-            <Weatherinfo weather = {WeatherState}/>
-            <Forecastlist forecast = {forecastState}/>
+        <div className={"flex flex-col items-center"}>
+            <Image src={'https://navaxcollege.com/assets/images/home/logoNavax.svg'} alt={"navax college logo"} width={86} height={44}/>
+            <div className={"bg-white shadow mt-4 rounded-2xl p-8 py-16"}>
+                <Searchinfo city={city} getWeatherData={getWeatherData}/>
+                <Weatherinfo weather={WeatherState}/>
+                {forecastState && <Forecastlist forecast={forecastState}/>}
+            </div>
         </div>
+
     );
 }
 

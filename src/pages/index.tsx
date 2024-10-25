@@ -16,7 +16,7 @@ const geistMono = localFont({
 export default function Home() {
   return (
 
-      <main>
+      <main className={"flex justify-center items-center h-[100vh]"}>
           <Weather city={"Tehran"}/>
       </main>
 

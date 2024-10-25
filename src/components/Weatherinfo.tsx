@@ -11,10 +11,10 @@ function Weatherinfo({weather}: Props) {
             <div>
                 <h1 className={"text-2xl"}>{weather.city}</h1>
                 <div>{weather.description}</div>
-                <div>Humidity : <span className={"text-primary"}>{weather.humidity}</span> , wind : <span className={"text-primary"}>{weather.wind}</span></div>
+                <div>Humidity : <span className={"text-primary"}>{weather.humidity}</span> , wind : <span className={"text-primary"}>{weather.wind}km/h</span></div>
             </div>
-            <div>
-                <Weathericon size={36} icon={weather.icon}/>
+            <div className={"flex justify-end"}>
+                <Weathericon size={56} icon={weather.icon}/>
             </div>
         </div>
     );
