@@ -2,8 +2,9 @@ import Searchinfo from "@/components/Searchinfo";
 import Weatherinfo from "@/components/Weatherinfo";
 import Forecastlist from "@/components/Forecastlist";
 import {useState} from "react";
-import {CallWeatherApi} from "@/Api/api";
+import {CallForcastApi, CallWeatherApi} from "@/Api/api";
 import {bgWhite} from "next/dist/lib/picocolors";
+import {ForecastResponse} from "@/types/api/ForecastResponse";
 
 interface Props {
     city: string;
@@ -17,6 +18,7 @@ function Weather({city}:Props) {
         icon : '',
         daily : [],
     })
+    const [forecastState , setForecastState ] = useState<ForecastResponse | null>(null);
     // console.log(WeatherState);
     const getWeatherData =async (city : string) => {
         const response = await CallWeatherApi ({city});
@@ -32,6 +34,8 @@ function Weather({city}:Props) {
         SetWeatherState(weather);
         // console.log(response);
 
+       const forecastResponse = await CallForcastApi({lat : response.coord.lat , lon : response.coord.lon});
+        setForecastState(forecastResponse);
     }
     if (WeatherState.city.length === 0){
         getWeatherData (city);
@@ -41,7 +45,7 @@ function Weather({city}:Props) {
         <div className={"bg-white shadow mt-4 rounded-2xl p-8 py-16"}>
             <Searchinfo city={city} getWeatherData={getWeatherData}/>
             <Weatherinfo weather = {WeatherState}/>
-            <Forecastlist/>
+            <Forecastlist forecast = {forecastState}/>
         </div>
     );
 }
